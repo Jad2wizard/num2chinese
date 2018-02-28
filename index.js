@@ -4,7 +4,7 @@ let scale1 = ['', '十', '百', '千'];
 let scale2 = ['', '万', '亿', '兆'];
 
 let num2Chinese = (num) => {
-    if(!Number(num) === Number(num)){
+    if(Number.isNaN(num)){
         return num;
     }
     num = Number(num).toString();
@@ -15,8 +15,8 @@ let num2Chinese = (num) => {
         numList.push(numMap[Number(digit)]);
     }
 
-    let maxScale = parseInt(num.length/scale1.length);
-    for(let i=num.length%scale1.length-1; i>0; --i){
+    let maxScale = parseInt((num.length - 1) / scale1.length);
+    for(let i=(num.length - 1) % scale1.length; i>0; --i){
         scaleList.push(scale1[i]);
     }
     for(let i=maxScale; i>0; --i){
@@ -38,9 +38,9 @@ let num2Chinese = (num) => {
     if(res[0] === '一' && res[1] === '十'){
         res = res.replace(/^一/, '');
     }
-    res = res.replace(/零$/, '');
-    res = res.replace(/零+/, '零');
+    res = res.replace(/零+/, '零'); //合并连续的‘零’
+    res = res.replace(/零$/, ''); //删除末尾的‘零’
     return res;
-}
-console.log(num2Chinese(123))
+};
+
 module.exports = num2Chinese;
