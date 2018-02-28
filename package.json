@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jad2wizard/num2chinese.git"
+  },
   "author": "Jad2Wizard",
   "license": "MIT"
 }
